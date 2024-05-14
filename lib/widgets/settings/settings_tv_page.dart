@@ -80,7 +80,7 @@ class _ContentState extends State<_Content> {
       valueListenable: _indexNotifier,
       builder: (context, selectedIndex, child) {
         final rail = NavigationRail(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           extended: true,
           destinations: sections
               .map((section) => NavigationRailDestination(

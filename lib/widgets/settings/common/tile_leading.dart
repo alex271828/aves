@@ -22,7 +22,7 @@ class SettingsTileLeading extends StatelessWidget {
     return AnimatedContainer(
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: colorScheme.background,
+        color: colorScheme.surface,
         border: Border.fromBorderSide(BorderSide(
           color: color,
           width: AvesFilterChip.outlineWidth,

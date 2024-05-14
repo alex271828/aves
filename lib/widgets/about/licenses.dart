@@ -88,7 +88,7 @@ class _LicensesState extends State<Licenses> {
                     builder: (context) => Theme(
                       data: Theme.of(context).copyWith(
                         // as of Flutter v3.7.8, `cardColor` is used as a background color by `LicensePage`
-                        cardColor: Theme.of(context).colorScheme.background,
+                        cardColor: Theme.of(context).colorScheme.surface,
                       ),
                       child: const LicensePage(),
                     ),

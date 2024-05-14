@@ -192,7 +192,7 @@ class _ContentState extends State<_Content> {
                         return Theme(
                           data: theme.copyWith(
                             listTileTheme: listTileTheme.copyWith(
-                              tileColor: theme.colorScheme.background,
+                              tileColor: theme.colorScheme.surface,
                             ),
                           ),
                           child: const TvLicensePage(),

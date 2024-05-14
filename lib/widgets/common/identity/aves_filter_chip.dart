@@ -233,7 +233,7 @@ class _AvesFilterChipState extends State<AvesFilterChip> {
   @override
   Widget build(BuildContext context) {
     final decoration = widget.decoration;
-    final chipBackground = Theme.of(context).colorScheme.background;
+    final chipBackground = Theme.of(context).colorScheme.surface;
 
     final onTap = widget.onTap != null
         ? () {

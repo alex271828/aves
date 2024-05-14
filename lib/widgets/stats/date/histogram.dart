@@ -196,11 +196,11 @@ class _HistogramState extends State<Histogram> with AutomaticKeepAliveClientMixi
 
     final colorScheme = Theme.of(context).colorScheme;
     final accentColor = colorScheme.primary;
-    final axisColor = charts.ColorUtil.fromDartColor(drawPoints ? colorScheme.onBackground : Colors.transparent);
-    final measureLineColor = charts.ColorUtil.fromDartColor(drawPoints ? colorScheme.onBackground.withOpacity(.1) : Colors.transparent);
+    final axisColor = charts.ColorUtil.fromDartColor(drawPoints ? colorScheme.onSurface : Colors.transparent);
+    final measureLineColor = charts.ColorUtil.fromDartColor(drawPoints ? colorScheme.onSurface.withOpacity(.1) : Colors.transparent);
     final histogramLineColor = charts.ColorUtil.fromDartColor(drawLine ? accentColor : Colors.white);
     final histogramPointStrikeColor = charts.ColorUtil.fromDartColor(drawPoints ? colorScheme.onSurface : Colors.transparent);
-    final histogramPointFillColor = charts.ColorUtil.fromDartColor(colorScheme.background);
+    final histogramPointFillColor = charts.ColorUtil.fromDartColor(colorScheme.surface);
 
     final series = [
       if (drawLine || drawArea)

@@ -61,7 +61,7 @@ class HighlightTitle extends StatelessWidget {
               style: style,
             ),
           ],
-          outlineColor: Theme.of(context).colorScheme.background,
+          outlineColor: Theme.of(context).colorScheme.surface,
           softWrap: false,
           overflow: TextOverflow.fade,
           maxLines: 1,

@@ -55,14 +55,14 @@ class Themes {
       colorScheme: colors,
       dividerColor: colors.outlineVariant,
       indicatorColor: colors.primary,
-      scaffoldBackgroundColor: colors.background,
+      scaffoldBackgroundColor: colors.surface,
       // TYPOGRAPHY & ICONOGRAPHY
       typography: _typography,
       // COMPONENT THEMES
       checkboxTheme: _checkboxTheme(colors),
       floatingActionButtonTheme: _floatingActionButtonTheme(colors),
       navigationRailTheme: NavigationRailThemeData(
-        backgroundColor: colors.background,
+        backgroundColor: colors.surface,
         selectedIconTheme: IconThemeData(color: colors.primary),
         unselectedIconTheme: IconThemeData(color: _unselectedWidgetColor(colors)),
         selectedLabelTextStyle: TextStyle(color: colors.primary),
@@ -84,10 +84,10 @@ class Themes {
 
   static PopupMenuThemeData _popupMenuTheme(ColorScheme colors, TextTheme textTheme) {
     return PopupMenuThemeData(
-      labelTextStyle: MaterialStateProperty.resolveWith((states) {
+      labelTextStyle: WidgetStateProperty.resolveWith((states) {
         // adapted from M3 defaults
         final TextStyle style = textTheme.labelLarge!;
-        if (states.contains(MaterialState.disabled)) {
+        if (states.contains(WidgetState.disabled)) {
           return style.apply(color: colors.onSurface.withOpacity(0.38));
         }
         return style.apply(color: colors.onSurface);
@@ -105,23 +105,23 @@ class Themes {
 
   // adapted from M3 defaults
   static RadioThemeData _radioTheme(ColorScheme colors) => RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) {
-            if (states.contains(MaterialState.disabled)) {
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            if (states.contains(WidgetState.disabled)) {
               return colors.onSurface.withOpacity(0.38);
             }
             return colors.primary;
           }
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(WidgetState.disabled)) {
             return colors.onSurface.withOpacity(0.38);
           }
-          if (states.contains(MaterialState.pressed)) {
+          if (states.contains(WidgetState.pressed)) {
             return colors.onSurface;
           }
-          if (states.contains(MaterialState.hovered)) {
+          if (states.contains(WidgetState.hovered)) {
             return colors.onSurface;
           }
-          if (states.contains(MaterialState.focused)) {
+          if (states.contains(WidgetState.focused)) {
             return colors.onSurface;
           }
           return _unselectedWidgetColor(colors);
@@ -170,7 +170,7 @@ class Themes {
         foregroundColor: _lightActionIconColor,
         // `titleTextStyle.color` is used by text
         titleTextStyle: _titleTextStyle.copyWith(color: _lightTitleColor),
-        systemOverlayStyle: deviceInitialized ? AvesApp.systemUIStyleForBrightness(colors.brightness, colors.background) : null,
+        systemOverlayStyle: deviceInitialized ? AvesApp.systemUIStyleForBrightness(colors.brightness, colors.surface) : null,
       ),
       dialogTheme: DialogTheme(
         titleTextStyle: _titleTextStyle.copyWith(color: _lightTitleColor),
@@ -221,7 +221,7 @@ class Themes {
         foregroundColor: _darkTitleColor,
         // `titleTextStyle.color` is used by text
         titleTextStyle: _titleTextStyle.copyWith(color: _darkTitleColor),
-        systemOverlayStyle: deviceInitialized ? AvesApp.systemUIStyleForBrightness(colors.brightness, colors.background) : null,
+        systemOverlayStyle: deviceInitialized ? AvesApp.systemUIStyleForBrightness(colors.brightness, colors.surface) : null,
       ),
       dialogTheme: DialogTheme(
         titleTextStyle: _titleTextStyle.copyWith(color: _darkTitleColor),
@@ -251,12 +251,12 @@ class Themes {
 
   static ThemeData blackTheme(Color accentColor, bool deviceInitialized) {
     final colors = _darkColorScheme(accentColor).copyWith(
-      background: Colors.black,
+      surface: Colors.black,
     );
     final baseTheme = _baseDarkTheme(colors, deviceInitialized);
     return baseTheme.copyWith(
       appBarTheme: baseTheme.appBarTheme.copyWith(
-        backgroundColor: colors.background,
+        backgroundColor: colors.surface,
       ),
     );
   }

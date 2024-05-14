@@ -113,7 +113,7 @@ class _RemoveEntryMetadataDialogState extends State<RemoveEntryMetadataDialog> {
           ),
         ),
       ],
-      outlineColor: Theme.of(context).colorScheme.background,
+      outlineColor: Theme.of(context).colorScheme.surface,
     );
     if (context.select<Settings, bool>((v) => v.themeColorMode == AvesThemeColorMode.polychrome)) {
       final colors = context.watch<AvesColorsData>();
