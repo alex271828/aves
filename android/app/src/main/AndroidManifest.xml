@@ -319,8 +319,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <!-- as of Flutter v3.19.0 (stable),
-        Impeller fails to render videos & platform views, has poor performance -->
+        <!-- as of Flutter v3.22.0 (stable),
+        Impeller fails to render videos (via `ffmpegkit`), and has random glitches -->
         <meta-data
             android:name="io.flutter.embedding.android.EnableImpeller"
             android:value="false" />
