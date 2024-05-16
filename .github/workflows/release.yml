@@ -38,9 +38,6 @@ jobs:
         # cf https://github.com/deckerst/aves/issues/388
         # cf https://github.com/deckerst/aves/issues/398
         run: |
-          echo "${{ secrets.KEY_JKS }}" > release.keystore.asc
-          gpg -d --passphrase "${{ secrets.KEY_JKS_PASSPHRASE }}" --batch release.keystore.asc > $AVES_STORE_FILE
-          rm release.keystore.asc
           mkdir outputs
           scripts/apply_flavor_play.sh
           ./flutterw build appbundle -t lib/main_play.dart --flavor play --bundle-sksl-path shaders.sksl.json
@@ -56,14 +53,6 @@ jobs:
           scripts/apply_flavor_libre.sh
           ./flutterw build apk -t lib/main_libre.dart --flavor libre --split-per-abi
           cp build/app/outputs/apk/libre/release/*.apk outputs
-          rm $AVES_STORE_FILE
-        env:
-          AVES_STORE_FILE: ${{ github.workspace }}/key.jks
-          AVES_STORE_PASSWORD: ${{ secrets.AVES_STORE_PASSWORD }}
-          AVES_KEY_ALIAS: ${{ secrets.AVES_KEY_ALIAS }}
-          AVES_KEY_PASSWORD: ${{ secrets.AVES_KEY_PASSWORD }}
-          AVES_GOOGLE_API_KEY: ${{ secrets.AVES_GOOGLE_API_KEY }}
-          AVES_HUAWEI_API_KEY: ${{ secrets.AVES_HUAWEI_API_KEY }}
 
       - name: Create a release with the APK and App Bundle.
         uses: ncipollo/release-action@v1
@@ -77,25 +66,3 @@ jobs:
         with:
           name: appbundle
           path: outputs/app-play-release.aab
-
-  release:
-    name: Create beta release on Play Store.
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Get appbundle from artifacts.
-        uses: actions/download-artifact@v4
-        with:
-          name: appbundle
-
-      - name: Release app to beta channel.
-        uses: r0adkll/upload-google-play@v1.1.3
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
-          packageName: deckers.thibault.aves
-          releaseFiles: app-play-release.aab
-          track: beta
-          status: completed
-          whatsNewDirectory: whatsnew
