@@ -123,7 +123,6 @@ android {
             applicationIdSuffix ".profile"
         }
         release {
-            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
